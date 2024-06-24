@@ -6,8 +6,8 @@
   "singlePage": ["link", "about"],
   "bottomText": "❤️ 转载文章请注明出处，谢谢！❤️",
   "iconList": {
-    "luogu": "M8 0a8 8 0 1 0 0 16a8 8 0 1 0 0-16zm8-6.5a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0zM6 6h4v4H6V6zm2 2h2V6H8v2z",
-    "codeforces": "M2 8h2v7H2V8zm4-6h2v13H6V2zm8 1h2v12h-2V3z"
+    "luogu": "M16 0H0v16h16V0zm-4 8a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM6 6h4v4H6V6zm2 2h2V6H8v2z",
+    "codeforces": "M2 6h4v4H2V6zm4-2h4v6H6V4zm4 1h4v7H10V3z"
   },
   "exlink": {
     "luogu": "https://www.luogu.com.cn/user/1022761",
