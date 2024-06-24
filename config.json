@@ -6,8 +6,8 @@
   "singlePage": ["link", "about"],
   "bottomText": "❤️ 转载文章请注明出处，谢谢！❤️",
   "iconList": {
-    "codeforces": "M0 0h20v10H40v5H60v15H40v-5H0V0z", // SVG路径数据
-    "luogu": "M16 0H0v16h16V0zm-4 8a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM6 6h4v4H6V6zm2 2h2V6H8v2z" // 示例SVG路径数据
+    "codeforces": "M0 0h20v10H40v5H60v15H40v-5H0V0z", 
+    "luogu": "M16 0H0v16h16V0zm-4 8a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM6 6h4v4H6V6zm2 2h2V6H8v2z"
   },
   "exlink": {
     "luogu": "https://www.luogu.com.cn/user/1022761",
