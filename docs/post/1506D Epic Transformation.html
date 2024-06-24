@@ -106,7 +106,7 @@ $$a_{m-2} &amp;lt; \frac{n}{2}$$<br>
 $$\Rightarrow a_{m-2} \leq \frac{n-2}{2} = \sum b_i $$<br>
 故<br>
 $$\max {b_i} = \max {a_i} = \max {a_{m-2},a_{m-1}-1, a_m-1} \leq \sum b_i$$</p>
-<p>这样一来，我们把排序后的 ${b_i}$ 看成原来的 ${a_i} $ 然后递归下去，数组的总和不断减小，直至数组为空或只剩下1。</p>
+<p>这样一来，我们把排序后的 ${b_i}$ 看成原来的 ${a_i}$ 然后递归下去，数组的总和不断减小，直至数组为空或只剩下1。</p>
 <p>因此，本题最终答案为 $\max {a_m - (n - a_m), n\mod 2}$</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
