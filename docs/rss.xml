@@ -1,5 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Wyk的博客</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link><description>分享一些解题思路和技术</description><copyright>Wyk的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link></image><lastBuildDate>Mon, 24 Jun 2024 08:10:21 +0000</lastBuildDate><managingEditor>Wyk的博客</managingEditor><ttl>60</ttl><webMaster>Wyk的博客</webMaster><item><title>1772E Permutation Game</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/1772E%20Permutation%20Game.html</link><description># 博弈问题解题报告&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Wyk的博客</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link><description>分享一些解题思路和技术</description><copyright>Wyk的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link></image><lastBuildDate>Mon, 24 Jun 2024 10:23:41 +0000</lastBuildDate><managingEditor>Wyk的博客</managingEditor><ttl>60</ttl><webMaster>Wyk的博客</webMaster><item><title>1932C LR-remainders</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/1932C%20LR-remainders.html</link><description>## 原题链接&#13;
+[LR-remainders](https://codeforces.com/contest/1932/problem/C)&#13;
+&#13;
+## 题目大意&#13;
+给你一个长度为 $n$ 的数组 $a$、一个正整数 $m$ 和一串长度为 $n$ 的命令。</description><guid isPermaLink="true">https://wyk-imarubbish.github.io/wuuu.github.io/post/1932C%20LR-remainders.html</guid><pubDate>Mon, 24 Jun 2024 10:21:30 +0000</pubDate></item><item><title>1926G Vlad and Trouble at MIT</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/1926G%20Vlad%20and%20Trouble%20at%20MIT.html</link><description>## 原题链接&#13;
+[Vlad and Trouble at MIT](https://codeforces.com/contest/1926/problem/G)&#13;
+&#13;
+## 题目大意&#13;
+学生寝室构成一棵树，有的寝室在开派对（用 $P$ 表示），有的寝室的人要睡觉怕吵（用 $S$ 表示），有的寝室的人无所谓（用 $C$ 表示）。</description><guid isPermaLink="true">https://wyk-imarubbish.github.io/wuuu.github.io/post/1926G%20Vlad%20and%20Trouble%20at%20MIT.html</guid><pubDate>Mon, 24 Jun 2024 10:19:03 +0000</pubDate></item><item><title>1929D Sasha and a Walk in the City</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/1929D%20Sasha%20and%20a%20Walk%20in%20the%20City.html</link><description>## 原题链接：&#13;
+[Sasha and a Walk in the City](https://codeforces.com/problemset/problem/1929/D)&#13;
+&#13;
+## 题意简述：&#13;
+给定一棵无根树，要求在树上选择一些节点（可以不选）将其变为危险的点，使得树上任意一条简单路径上至多只有两个危险的点。</description><guid isPermaLink="true">https://wyk-imarubbish.github.io/wuuu.github.io/post/1929D%20Sasha%20and%20a%20Walk%20in%20the%20City.html</guid><pubDate>Mon, 24 Jun 2024 10:18:15 +0000</pubDate></item><item><title>1506D Epic Transformation</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/1506D%20Epic%20Transformation.html</link><description>## 原题链接&#13;
+[Epic Transformation](https://codeforces.com/contest/1506/problem/D)&#13;
+&#13;
+## 题意简述&#13;
+给定正整数序列，每次操作删除两个不同的数字，问任意次操作后序列中最少剩余多少个数。</description><guid isPermaLink="true">https://wyk-imarubbish.github.io/wuuu.github.io/post/1506D%20Epic%20Transformation.html</guid><pubDate>Mon, 24 Jun 2024 10:17:17 +0000</pubDate></item><item><title>1772E Permutation Game</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/1772E%20Permutation%20Game.html</link><description># 博弈问题解题报告&#13;
 &#13;
 ## 问题背景&#13;
 本题是一个关于排列和玩家策略的博弈问题。</description><guid isPermaLink="true">https://wyk-imarubbish.github.io/wuuu.github.io/post/1772E%20Permutation%20Game.html</guid><pubDate>Mon, 24 Jun 2024 05:52:44 +0000</pubDate></item></channel></rss>
