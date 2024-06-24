@@ -6,12 +6,20 @@
   "singlePage": ["link", "about"],
   "bottomText": "❤️ 转载文章请注明出处，谢谢！❤️",
   "iconList": {
-    "Luogu": "M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Z",
-    "Codeforces": "M10 20h4v-8h-4v8zm0-12v4c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1h-2c-.55 0-1 .45-1 1z"  
+    "Luogu": {
+      "svg": "M16 0H0v16h16V0zm-4 8a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM6 6h4v4H6V6zm2 2h2V6H8v2z",
+      "title": "洛谷",
+      "url": "https://www.luogu.com.cn/user/1022761"
+    },
+    "Codeforces": {
+      "svg": "M10 20h4v-8h-4v8zm0-12v4c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1h-2c-.55 0-1 .45-1 1z",
+      "title": "Codeforces",
+      "url": "https://codeforces.com/profile/Vegebird_Wuuuu"
+    }
   },
   "exlink": {
     "Luogu": "https://www.luogu.com.cn/user/1022761",
-    "Codeforces": "https://codeforces.com/profile/Vegebird_Wuuuu" 
+    "Codeforces": "https://codeforces.com/profile/Vegebird_Wuuuu"
   },
   "GMEEK_VERSION": "last"
 }
