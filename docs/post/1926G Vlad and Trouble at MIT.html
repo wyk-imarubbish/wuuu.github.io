@@ -109,7 +109,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </li>
 </ul>
 <p>这样便产生了一个问题, 如下图</p>
-<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8595a5a367eea471e00f2641ff8b2543fdd1e050c5cbb2b928b9c03579964117/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f723679643968786f2e706e67"><img src="https://camo.githubusercontent.com/8595a5a367eea471e00f2641ff8b2543fdd1e050c5cbb2b928b9c03579964117/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f723679643968786f2e706e67" alt="" data-canonical-src="https://cdn.luogu.com.cn/upload/image_hosting/r6yd9hxo.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9030ad5cbdede967635ba1c19662668deed0dd58a202559bbaa6e6e9d7660e20/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f723679643968786f2e706e67"><img src="https://camo.githubusercontent.com/9030ad5cbdede967635ba1c19662668deed0dd58a202559bbaa6e6e9d7660e20/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f723679643968786f2e706e67" alt="" data-canonical-src="https://cdn.luogu.com.cn/upload/image_hosting/r6yd9hxo.png" style="max-width: 100%;"></a></p>
 <p>在 $C$ 很多时，复杂度将接近 $O(2^n)$ 这是我们不能接受的。</p>
 <h2>思路二：缩点+贪心</h2>
 <p>在思路一中，我们注意到增加复杂度的因素是有很多连通的节点C。</p>
@@ -169,7 +169,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 cout &lt;&lt; ans &lt;&lt; endl;</pre></div>
 <p>交上去成功WA了，因为有如下反例：</p>
-<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a18f1c4563eb09a84795d2f6a4c95c6bf657f9676d99b912898b5f974e779cd8/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f746d7a33643661622e706e67"><img src="https://camo.githubusercontent.com/a18f1c4563eb09a84795d2f6a4c95c6bf657f9676d99b912898b5f974e779cd8/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f746d7a33643661622e706e67" alt="" data-canonical-src="https://cdn.luogu.com.cn/upload/image_hosting/tmz3d6ab.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/69a1ad8f839f83b3f878f5890391e70730fd732bd8d601d8978c49ce54077386/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f746d7a33643661622e706e67"><img src="https://camo.githubusercontent.com/69a1ad8f839f83b3f878f5890391e70730fd732bd8d601d8978c49ce54077386/68747470733a2f2f63646e2e6c756f67752e636f6d2e636e2f75706c6f61642f696d6167655f686f7374696e672f746d7a33643661622e706e67" alt="" data-canonical-src="https://cdn.luogu.com.cn/upload/image_hosting/tmz3d6ab.png" style="max-width: 100%;"></a></p>
 <h2>思路三：树形dp</h2>
 <p>上图让我们认识到缩点是有问题的，因此还是要回归到 dp 去解决，但是对于C点的处理与思路一不同。</p>
 <p>我觉得本场cf的<a href="https://codeforces.com/blog/entry/126132" rel="nofollow">官方题解</a>中给出的比喻很不错，这里我给出中文概括：</p>
