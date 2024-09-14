@@ -124,37 +124,37 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </li>
 </ol>
 <h2>代码实现</h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">define</span> <span class="pl-en">MAXN</span> <span class="pl-c1">500010</span>
-#<span class="pl-k">define</span> <span class="pl-en">inf</span> <span class="pl-c1">0x3f3f3f3f</span>
-#<span class="pl-k">define</span> <span class="pl-en">rep</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &lt;= (b); i++)
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<div class="highlight highlight-source-c++"><pre class="notranslate">#include &lt;bits/stdc++.h&gt;
+#define MAXN 500010
+#define inf 0x3f3f3f3f
+#define rep(i, a, b) for(int i = (a); i &lt;= (b); i++)
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
 
-<span class="pl-k">int</span> <span class="pl-en">main</span>() {
-    <span class="pl-c1">ios::sync_with_stdio</span>(<span class="pl-c1">false</span>), cin.<span class="pl-c1">tie</span>(<span class="pl-c1">nullptr</span>);
-    <span class="pl-k">int</span> T; cin &gt;&gt; T;
-    <span class="pl-k">while</span> (T--) {
-        <span class="pl-k">int</span> n; cin &gt;&gt; n;
-        <span class="pl-k">int</span> fst = <span class="pl-c1">0</span>, sec = <span class="pl-c1">0</span>, both = <span class="pl-c1">0</span>;
-        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n) {
-            <span class="pl-k">int</span> x; cin &gt;&gt; x;
-            <span class="pl-k">if</span> (x != i &amp;&amp; x != n - i + <span class="pl-c1">1</span>) {
+int main() {
+    ios::<span class="pl-en">sync_with_stdio</span>(false), cin.tie(<span class="pl-c1">nullptr</span>);
+    int T; cin &gt;&gt; T;
+    while (T--) {
+        int n; cin &gt;&gt; n;
+        int fst = 0, sec = 0, both = 0;
+        rep(i, 1, n) {
+            int x; cin &gt;&gt; x;
+            if (x != i &amp;&amp; x != n - i + 1) {
                 both++;
-            } <span class="pl-k">else</span> <span class="pl-k">if</span> (x != i) {
+            } else if (x != i) {
                 fst++;
-            } <span class="pl-k">else</span> <span class="pl-k">if</span> (x != n - i + <span class="pl-c1">1</span>) {
+            } else if (x != n - i + 1) {
                 sec++;
             }
         }
-        <span class="pl-k">if</span> (fst + both &lt;= sec) {
-            cout &lt;&lt; <span class="pl-s"><span class="pl-pds">"</span>First<span class="pl-pds">"</span></span> &lt;&lt; endl;
-        } <span class="pl-k">else</span> <span class="pl-k">if</span> (sec + both &lt; fst) {
-            cout &lt;&lt; <span class="pl-s"><span class="pl-pds">"</span>Second<span class="pl-pds">"</span></span> &lt;&lt; endl;
-        } <span class="pl-k">else</span> {
-            cout &lt;&lt; <span class="pl-s"><span class="pl-pds">"</span>Tie<span class="pl-pds">"</span></span> &lt;&lt; endl;
+        if (fst + both &lt;= sec) {
+            cout &lt;&lt; "First" &lt;&lt; endl;
+        } else if (sec + both &lt; fst) {
+            cout &lt;&lt; "Second" &lt;&lt; endl;
+        } else {
+            cout &lt;&lt; "Tie" &lt;&lt; endl;
         }
     }
-    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+    return 0;
 }</pre></div>
 
 </div>

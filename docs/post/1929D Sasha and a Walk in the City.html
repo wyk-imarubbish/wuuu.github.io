@@ -120,57 +120,57 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>所以， $dp_{u,1} = 1+\prod (dp_{v,1}+1)-1=\prod (dp_{v,1}+1)$。</p>
 <h3>最终答案</h3>
 <p>我们选取1为整棵树的根，则最终答案为 $dp_{1,0}+dp_{1,1}+1$ ，其中 1 表示整棵树都是空的。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">define</span> <span class="pl-en">MAXN</span> <span class="pl-c1">300010</span>
-#<span class="pl-k">define</span> <span class="pl-en">MOD</span> <span class="pl-c1">998244353</span>
-#<span class="pl-k">define</span> <span class="pl-en">rep</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &lt;= (b); i++)
-#<span class="pl-k">define</span> <span class="pl-en">per</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &gt;= (b); i--)
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
-<span class="pl-k">typedef</span> <span class="pl-k">long</span> <span class="pl-k">long</span> ll;
-<span class="pl-k">int</span> head[MAXN], cnt, n;
-ll dp[MAXN][<span class="pl-c1">2</span>];
-<span class="pl-k">struct</span> <span class="pl-en">Edge</span>
+<div class="highlight highlight-source-c++"><pre class="notranslate">#include &lt;bits/stdc++.h&gt;
+#define MAXN 300010
+#define MOD 998244353
+#define rep(i, a, b) for(int i = (a); i &lt;= (b); i++)
+#define per(i, a, b) for(int i = (a); i &gt;= (b); i--)
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
+typedef long long ll;
+int head[MAXN], cnt, n;
+ll dp[MAXN][2];
+struct Edge
 {
-    <span class="pl-k">int</span> to, next;
-}e[MAXN &lt;&lt; <span class="pl-c1">2</span>];
-<span class="pl-k">void</span> <span class="pl-en">add_edge</span>(<span class="pl-k">int</span> from, <span class="pl-k">int</span> to)
+    int to, next;
+}e[MAXN &lt;&lt; 2];
+void add_edge(int from, int to)
 {
     e[++cnt] = {to, head[from]};
     head[from] = cnt;
 }
-<span class="pl-k">void</span> <span class="pl-en">dfs</span>(<span class="pl-k">int</span> x, <span class="pl-k">int</span> fa)
+void dfs(int x, int fa)
 {
-    dp[x][<span class="pl-c1">1</span>] = <span class="pl-c1">1</span>;
-    dp[x][<span class="pl-c1">0</span>] = <span class="pl-c1">0</span>;
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = head[x]; i; i = e[i].<span class="pl-smi">next</span>)
+    dp[x][1] = 1;
+    dp[x][0] = 0;
+    for (int i = head[x]; i; i = e[i].next)
     {
-        <span class="pl-k">int</span> y = e[i].<span class="pl-smi">to</span>;
-        <span class="pl-k">if</span> (y == fa) <span class="pl-k">continue</span>;
-        <span class="pl-c1">dfs</span>(y, x);
-        dp[x][<span class="pl-c1">1</span>] = dp[x][<span class="pl-c1">1</span>] * (dp[y][<span class="pl-c1">1</span>] + <span class="pl-c1">1</span>) % MOD;
-        dp[x][<span class="pl-c1">0</span>] = (dp[x][<span class="pl-c1">0</span>] + dp[y][<span class="pl-c1">0</span>] + dp[y][<span class="pl-c1">1</span>]) % MOD;
+        int y = e[i].to;
+        if (y == fa) continue;
+        dfs(y, x);
+        dp[x][1] = dp[x][1] * (dp[y][1] + 1) % MOD;
+        dp[x][0] = (dp[x][0] + dp[y][0] + dp[y][1]) % MOD;
     }
 }
-<span class="pl-k">int</span> <span class="pl-en">main</span>()
+int main()
 {
-    <span class="pl-c1">ios::sync_with_stdio</span>(<span class="pl-c1">false</span>), cin.<span class="pl-c1">tie</span>(<span class="pl-c1">nullptr</span>);
-    <span class="pl-k">int</span> T; cin &gt;&gt; T;
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> ttt = <span class="pl-c1">0</span>; ttt &lt; T; ttt++)
+    ios::<span class="pl-en">sync_with_stdio</span>(false), cin.tie(<span class="pl-c1">nullptr</span>);
+    int T; cin &gt;&gt; T;
+    for (int ttt = 0; ttt &lt; T; ttt++)
     {
-        <span class="pl-c1">memset</span>(head, <span class="pl-c1">0</span>, <span class="pl-k">sizeof</span>(head));
-        cnt = <span class="pl-c1">0</span>;
+        memset(head, 0, sizeof(head));
+        cnt = 0;
         cin &gt;&gt; n;
-        <span class="pl-k">int</span> u, v;
-        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n - <span class="pl-c1">1</span>)
+        int u, v;
+        rep(i, 1, n - 1)
         {
             cin &gt;&gt; u &gt;&gt; v;
-            <span class="pl-c1">add_edge</span>(u, v);
-            <span class="pl-c1">add_edge</span>(v, u);
+            add_edge(u, v);
+            add_edge(v, u);
         }
-        <span class="pl-c1">dfs</span>(<span class="pl-c1">1</span>, <span class="pl-c1">1</span>);
-        cout &lt;&lt; (dp[<span class="pl-c1">1</span>][<span class="pl-c1">0</span>] + dp[<span class="pl-c1">1</span>][<span class="pl-c1">1</span>] + <span class="pl-c1">1</span>) % MOD &lt;&lt; endl;
+        dfs(1, 1);
+        cout &lt;&lt; (dp[1][0] + dp[1][1] + 1) % MOD &lt;&lt; endl;
     }
-    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+    return 0;
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 

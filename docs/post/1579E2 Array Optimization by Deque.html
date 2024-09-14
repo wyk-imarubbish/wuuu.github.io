@@ -105,87 +105,87 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <strong>逆序对计算</strong>：对于数组中的每个元素，计算将其添加到队列开头或结尾时新增的逆序对数量，并选择使新增逆序对数量最小的方案。把一个数 $x$ 添加进双端队列相当于给 $c[x]$ 加一，求逆序对相当于求c[1]~c[x-1]与c[x+1]~c[N]之和，其中N为离散化之后最大的数。</li>
 </ol>
 <h1>代码实现</h1>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">define</span> <span class="pl-en">MAXN</span> <span class="pl-c1">200010</span>
-#<span class="pl-k">define</span> <span class="pl-en">inf</span> <span class="pl-c1">0x3f3f3f3f</span>
-#<span class="pl-k">define</span> <span class="pl-en">rep</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &lt;= (b); i++)
-#<span class="pl-k">define</span> <span class="pl-en">per</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &gt;= (b); i--)
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
-<span class="pl-k">typedef</span> <span class="pl-k">long</span> <span class="pl-k">long</span> ll;
-<span class="pl-k">int</span> N;
-<span class="pl-k">struct</span> <span class="pl-en">node</span>{
-    <span class="pl-k">int</span> id;
-    <span class="pl-k">int</span> val;
-    <span class="pl-k">bool</span> <span class="pl-k">operator</span>&lt;(<span class="pl-k">const</span> node &amp;b) <span class="pl-k">const</span> {
-        <span class="pl-k">return</span> val &lt; b.<span class="pl-smi">val</span>;
+<div class="highlight highlight-source-c++"><pre class="notranslate">#include &lt;bits/stdc++.h&gt;
+#define MAXN 200010
+#define inf 0x3f3f3f3f
+#define rep(i, a, b) for(int i = (a); i &lt;= (b); i++)
+#define per(i, a, b) for(int i = (a); i &gt;= (b); i--)
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
+typedef long long ll;
+int N;
+struct node{
+    int id;
+    int val;
+    bool operator&lt;(const node &amp;b) const {
+        return val &lt; b.val;
     }
 }a[MAXN];
-<span class="pl-k">bool</span> <span class="pl-en">cmp</span>(node a, node b) {
-    <span class="pl-k">return</span> a.<span class="pl-smi">id</span> &lt; b.<span class="pl-smi">id</span>;
+bool cmp(node a, node b) {
+    return a.<span class="pl-en">id</span> &lt; b.id;
 }
-<span class="pl-k">int</span> <span class="pl-en">lowbit</span>(<span class="pl-k">int</span> x) {
-    <span class="pl-k">return</span> x &amp; -x;
+int lowbit(int x) {
+    return x &amp; -x;
 }
-<span class="pl-k">void</span> <span class="pl-en">update</span>(<span class="pl-k">int</span> i, <span class="pl-k">int</span> val, vector&lt;<span class="pl-k">int</span>&gt; &amp;v) {
-    <span class="pl-k">while</span> (i &lt;= N) {
+void update(int i, int val, vector&lt;int&gt; &amp;v) {
+    while (i &lt;= N) {
         v[i] += val;
-        i += <span class="pl-c1">lowbit</span>(i);
+        i += lowbit(i);
     }
 }
-<span class="pl-k">int</span> <span class="pl-en">sum</span>(<span class="pl-k">int</span> i, vector&lt;<span class="pl-k">int</span>&gt; &amp;v) {
-    <span class="pl-k">int</span> res = <span class="pl-c1">0</span>;
-    <span class="pl-k">while</span> (i &gt; <span class="pl-c1">0</span>) {
+int sum(int i, vector&lt;int&gt; &amp;v) {
+    int res = 0;
+    while (i &gt; 0) {
         res += v[i];
-        i -= <span class="pl-c1">lowbit</span>(i);
+        i -= lowbit(i);
     }
-    <span class="pl-k">return</span> res;
+    return res;
 }
-<span class="pl-k">int</span> <span class="pl-en">range_sum</span>(<span class="pl-k">int</span> l, <span class="pl-k">int</span> r, vector&lt;<span class="pl-k">int</span>&gt; &amp;v) {
-    <span class="pl-k">return</span> <span class="pl-c1">sum</span>(r, v) - <span class="pl-c1">sum</span>(l - <span class="pl-c1">1</span>, v);
+int range_sum(int l, int r, vector&lt;int&gt; &amp;v) {
+    return sum(r, v) - sum(l - 1, v);
 }
-<span class="pl-k">void</span> <span class="pl-en">print</span>(vector&lt;<span class="pl-k">int</span>&gt; &amp;v) {
-    <span class="pl-k">for</span> (<span class="pl-k">auto</span> i : v) {
-        cout &lt;&lt; i &lt;&lt; <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>;
+void print(vector&lt;int&gt; &amp;v) {
+    for (<span class="pl-smi">auto</span> i : v) {
+        cout &lt;&lt; i &lt;&lt; " ";
     }
     cout &lt;&lt; endl;
 }
-<span class="pl-k">int</span> <span class="pl-en">main</span>()
+int main()
 {
-    <span class="pl-c1">ios::sync_with_stdio</span>(<span class="pl-c1">false</span>), cin.<span class="pl-c1">tie</span>(<span class="pl-c1">nullptr</span>);
-    <span class="pl-k">int</span> T; cin &gt;&gt; T;
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> ttt = <span class="pl-c1">0</span>; ttt &lt; T; ttt++)
+    ios::<span class="pl-en">sync_with_stdio</span>(false), cin.tie(<span class="pl-c1">nullptr</span>);
+    int T; cin &gt;&gt; T;
+    for (int ttt = 0; ttt &lt; T; ttt++)
     {
-        <span class="pl-k">int</span> n; cin &gt;&gt; n;
-        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n) {
-            <span class="pl-k">int</span> x; cin &gt;&gt; x;
-            a[i].<span class="pl-smi">id</span> = i;
-            a[i].<span class="pl-smi">val</span> = x;
+        int n; cin &gt;&gt; n;
+        rep(i, 1, n) {
+            int x; cin &gt;&gt; x;
+            a[i].id = i;
+            a[i].val = x;
         }
-        <span class="pl-c1">sort</span>(a + <span class="pl-c1">1</span>, a + <span class="pl-c1">1</span> + n);
-        <span class="pl-k">int</span> cnt = <span class="pl-c1">0</span>;
-        a[<span class="pl-c1">0</span>].<span class="pl-smi">val</span> = -inf;
-        vector&lt;<span class="pl-k">int</span>&gt; <span class="pl-c1">b</span>(n + <span class="pl-c1">5</span>, <span class="pl-c1">0</span>);
-        <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt;= n; i++) {
-            <span class="pl-k">if</span> (a[i - <span class="pl-c1">1</span>] &lt; a[i]) {
+        sort(a + 1, a + 1 + n);
+        int cnt = 0;
+        a[0].val = -inf;
+        vector&lt;int&gt; b(n + 5, 0);
+        for (int i = 1; i &lt;= n; i++) {
+            if (a[i - 1] &lt; a[i]) {
                 b[i] = ++cnt;
-            } <span class="pl-k">else</span> {
+            } else {
                 b[i] = cnt;
             }
         }
-        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n) a[i].<span class="pl-smi">val</span> = b[i];
-        <span class="pl-c1">sort</span>(a + <span class="pl-c1">1</span>, a + <span class="pl-c1">1</span> + n, cmp);
+        rep(i, 1, n) a[i].val = b[i];
+        sort(a + 1, a + 1 + n, cmp);
         N = cnt;
-        vector&lt;<span class="pl-k">int</span>&gt; <span class="pl-c1">c</span>(n + <span class="pl-c1">5</span>, <span class="pl-c1">0</span>);
-        ll ans = <span class="pl-c1">0</span>;
-        <span class="pl-k">for</span>(<span class="pl-k">int</span> k = <span class="pl-c1">1</span>; k &lt;= n; k++) {
-            <span class="pl-k">int</span> i = a[k].<span class="pl-smi">val</span>;
-            <span class="pl-c1">update</span>(i, <span class="pl-c1">1</span>, c);
-            <span class="pl-c"><span class="pl-c">//</span> cout &lt;&lt; i &lt;&lt; " " &lt;&lt; range_sum(1, i - 1, c) &lt;&lt; " " &lt;&lt; range_sum(i + 1, N, c) &lt;&lt; endl;</span>
-            ans += <span class="pl-c1">min</span>(<span class="pl-c1">range_sum</span>(<span class="pl-c1">1</span>, i - <span class="pl-c1">1</span>, c), <span class="pl-c1">range_sum</span>(i + <span class="pl-c1">1</span>, N, c));
+        vector&lt;int&gt; c(n + 5, 0);
+        ll ans = 0;
+        for(int k = 1; k &lt;= n; k++) {
+            int i = a[k].val;
+            update(i, 1, c);
+            // cout &lt;&lt; i &lt;&lt; " " &lt;&lt; range_sum(1, i - 1, c) &lt;&lt; " " &lt;&lt; range_sum(i + 1, N, c) &lt;&lt; endl;
+            ans += min(range_sum(1, i - 1, c), range_sum(i + 1, N, c));
         }
         cout &lt;&lt; ans &lt;&lt; endl;
     }
-    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+    return 0;
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
