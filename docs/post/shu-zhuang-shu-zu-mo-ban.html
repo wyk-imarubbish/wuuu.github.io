@@ -231,76 +231,76 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><div class="highlight highlight-source-c++"><pre class="notranslate">/**********************************************************
- * @name： 树状数组
- * @author: wyk
- * @function: 区间修改，区间查询
- * @note: 区间修改单点查询、单点修改区间查询可以直接用这个板子
- **********************************************************/
+<div class="markdown-body" id="postBody"><div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">/*</span>*********************************************************</span>
+<span class="pl-c"> * @name： 树状数组</span>
+<span class="pl-c"> * @author: wyk</span>
+<span class="pl-c"> * @function: 区间修改，区间查询</span>
+<span class="pl-c"> * @note: 区间修改单点查询、单点修改区间查询可以直接用这个板子</span>
+<span class="pl-c"> *********************************************************<span class="pl-c">*/</span></span>
 
-#include &lt;bits/stdc++.h&gt;
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
-typedef long long ll;
+#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<span class="pl-k">typedef</span> <span class="pl-k">long</span> <span class="pl-k">long</span> ll;
 
-<span class="pl-k">template</span> &lt;<span class="pl-k">typename</span> T&gt;
-<span class="pl-k">class</span> TreeArray {
-   <span class="pl-k">private</span>:
+<span class="pl-k">template </span>&lt;<span class="pl-k">typename</span> T&gt;
+<span class="pl-k">class</span> <span class="pl-en">TreeArray</span> {
+   <span class="pl-k">private:</span>
     vector&lt;T&gt; a, b;
-    int <span class="pl-en">lowbit</span>(int x) { return x &amp; -x; }
-    // 对差分数组的修改，不在外部调用
-    void <span class="pl-en">update</span>(int pos, T val) {
-        for (int i = pos; i &lt; a.size(); i += lowbit(i)) {
+    <span class="pl-k">int</span> <span class="pl-en">lowbit</span>(<span class="pl-k">int</span> x) { <span class="pl-k">return</span> x &amp; -x; }
+    <span class="pl-c"><span class="pl-c">//</span> 对差分数组的修改，不在外部调用</span>
+    <span class="pl-k">void</span> <span class="pl-en">update</span>(<span class="pl-k">int</span> pos, T val) {
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> i = pos; i &lt; a.<span class="pl-c1">size</span>(); i += <span class="pl-c1">lowbit</span>(i)) {
             a[i] += val;
             b[i] += pos * val;
         }
     }
 
-   <span class="pl-k">public</span>:
-    TreeArray(int n) : a(n + 1), b(n + 1) {}
-    // 区间修改
-    void <span class="pl-en">updateRange</span>(int l, int r, T val) {
-        update(l, val);
-        update(r + 1, -val);
+   <span class="pl-k">public:</span>
+    <span class="pl-en">TreeArray</span>(<span class="pl-k">int</span> n) : a(n + <span class="pl-c1">1</span>), b(n + <span class="pl-c1">1</span>) {}
+    <span class="pl-c"><span class="pl-c">//</span> 区间修改</span>
+    <span class="pl-k">void</span> <span class="pl-en">updateRange</span>(<span class="pl-k">int</span> l, <span class="pl-k">int</span> r, T val) {
+        <span class="pl-c1">update</span>(l, val);
+        <span class="pl-c1">update</span>(r + <span class="pl-c1">1</span>, -val);
     }
-    // 前缀和
-    T <span class="pl-en">prefixSum</span>(int pos) {
-        T as = 0, bs = 0;
-        for (int i = pos; i &gt; 0; i -= lowbit(i)) {
+    <span class="pl-c"><span class="pl-c">//</span> 前缀和</span>
+    T <span class="pl-en">prefixSum</span>(<span class="pl-k">int</span> pos) {
+        T as = <span class="pl-c1">0</span>, bs = <span class="pl-c1">0</span>;
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> i = pos; i &gt; <span class="pl-c1">0</span>; i -= <span class="pl-c1">lowbit</span>(i)) {
             as += a[i];
             bs += b[i];
         }
-        return (pos + 1) * as - bs;
+        <span class="pl-k">return</span> (pos + <span class="pl-c1">1</span>) * as - bs;
     }
-    // 查询区间和
-    T <span class="pl-en">rangeSum</span>(int l, int r) { return prefixSum(r) - prefixSum(l - 1); }
-    // Θ(n) 建树
-    void <span class="pl-en">buildTree</span>(vector&lt;T&gt;&amp; arr) {
-        for (int i = 1; i &lt; arr.size(); i++) {
-            update(i, arr[i] - arr[i - 1]);
+    <span class="pl-c"><span class="pl-c">//</span> 查询区间和</span>
+    T <span class="pl-en">rangeSum</span>(<span class="pl-k">int</span> l, <span class="pl-k">int</span> r) { <span class="pl-k">return</span> <span class="pl-c1">prefixSum</span>(r) - <span class="pl-c1">prefixSum</span>(l - <span class="pl-c1">1</span>); }
+    <span class="pl-c"><span class="pl-c">//</span> Θ(n) 建树</span>
+    <span class="pl-k">void</span> <span class="pl-en">buildTree</span>(vector&lt;T&gt;&amp; arr) {
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt; arr.<span class="pl-c1">size</span>(); i++) {
+            <span class="pl-c1">update</span>(i, arr[i] - arr[i - <span class="pl-c1">1</span>]);
         }
     }
 };
 
-// Luogu P3372
-int main() {
-    int n, m;
+<span class="pl-c"><span class="pl-c">//</span> Luogu P3372</span>
+<span class="pl-k">int</span> <span class="pl-en">main</span>() {
+    <span class="pl-k">int</span> n, m;
     cin &gt;&gt; n &gt;&gt; m;
-    vector&lt;ll&gt; a(n + 1);
-    for (int i = 1; i &lt;= n; i++) {
+    vector&lt;ll&gt; <span class="pl-c1">a</span>(n + <span class="pl-c1">1</span>);
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt;= n; i++) {
         cin &gt;&gt; a[i];
     }
 
-    TreeArray&lt;ll&gt; tree_a(n);
-    tree_a.buildTree(a);
+    TreeArray&lt;ll&gt; <span class="pl-c1">tree_a</span>(n);
+    tree_a.<span class="pl-c1">buildTree</span>(a);
 
-    for (int i = 1; i &lt;= m; i++) {
-        int op, x, y, k;
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt;= m; i++) {
+        <span class="pl-k">int</span> op, x, y, k;
         cin &gt;&gt; op &gt;&gt; x &gt;&gt; y;
-        if (op == 1) {
+        <span class="pl-k">if</span> (op == <span class="pl-c1">1</span>) {
             cin &gt;&gt; k;
-            tree_a.updateRange(x, y, k);
-        } else {
-            cout &lt;&lt; tree_a.rangeSum(x, y) &lt;&lt; endl;
+            tree_a.<span class="pl-c1">updateRange</span>(x, y, k);
+        } <span class="pl-k">else</span> {
+            cout &lt;&lt; tree_a.<span class="pl-c1">rangeSum</span>(x, y) &lt;&lt; endl;
         }
     }
 }</pre></div></div>

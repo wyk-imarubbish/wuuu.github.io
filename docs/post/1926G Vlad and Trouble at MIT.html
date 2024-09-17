@@ -115,28 +115,28 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>在思路一中，我们注意到增加复杂度的因素是有很多连通的节点C。</p>
 <p>如果两个相连通的节点的属性相同，加厚它们之间的边似乎是没有必要的，由此我们想到了可以进行缩点。</p>
 <p>缩点的方法也很简单，进行一遍 $dfs$ 。若子节点和父节点不同，给子节点一个新的编号，并对新编号重新连边即可。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">char a[MAXN], b[MAXN];
-int nid[MAXN];
-// 缩点
-int dfsn = 1; // 1 ~ dfsn
-void dfs(int x, int fa)
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">char</span> a[MAXN], b[MAXN];
+<span class="pl-k">int</span> nid[MAXN];
+<span class="pl-c"><span class="pl-c">//</span> 缩点</span>
+<span class="pl-k">int</span> dfsn = <span class="pl-c1">1</span>; <span class="pl-c"><span class="pl-c">//</span> 1 ~ dfsn</span>
+<span class="pl-k">void</span> <span class="pl-en">dfs</span>(<span class="pl-k">int</span> x, <span class="pl-k">int</span> fa)
 {
-    for (<span class="pl-smi">auto</span> y : e[x])
+    <span class="pl-k">for</span> (<span class="pl-k">auto</span> y : e[x])
     {
-        if (y == fa) continue;
-        if (a[y] == a[x])
+        <span class="pl-k">if</span> (y == fa) <span class="pl-k">continue</span>;
+        <span class="pl-k">if</span> (a[y] == a[x])
         {
             nid[y] = nid[x];
-            dfs(y, x);
+            <span class="pl-c1">dfs</span>(y, x);
         }
-        else
+        <span class="pl-k">else</span>
         {
             nid[y] = ++dfsn;
-            ee[nid[x]].push_back(nid[y]);
-            ee[nid[y]].push_back(nid[x]);
-            if (a[x] == 'S' &amp;&amp; a[y] == 'P') ans++;
-            if (a[x] == 'P' &amp;&amp; a[y] == 'S') ans++;
-            dfs(y, x);
+            ee[nid[x]].<span class="pl-c1">push_back</span>(nid[y]);
+            ee[nid[y]].<span class="pl-c1">push_back</span>(nid[x]);
+            <span class="pl-k">if</span> (a[x] == <span class="pl-s"><span class="pl-pds">'</span>S<span class="pl-pds">'</span></span> &amp;&amp; a[y] == <span class="pl-s"><span class="pl-pds">'</span>P<span class="pl-pds">'</span></span>) ans++;
+            <span class="pl-k">if</span> (a[x] == <span class="pl-s"><span class="pl-pds">'</span>P<span class="pl-pds">'</span></span> &amp;&amp; a[y] == <span class="pl-s"><span class="pl-pds">'</span>S<span class="pl-pds">'</span></span>) ans++;
+            <span class="pl-c1">dfs</span>(y, x);
         }
     }
     b[nid[x]] = a[x];
@@ -151,20 +151,20 @@ void dfs(int x, int fa)
 <p>若边 $C-P$ 比边 $C-S$ 要少，就把 $ans$ 加上到边 $C-P$ 的数量，反之亦然。</p>
 </li>
 </ul>
-<div class="highlight highlight-source-c++"><pre class="notranslate">dfs(1, 1);
-// S-P边在dfs中已经判断过
-rep(i, 1, dfsn)
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-en">dfs</span>(<span class="pl-c1">1</span>, <span class="pl-c1">1</span>);
+<span class="pl-c"><span class="pl-c">//</span> S-P边在dfs中已经判断过</span>
+<span class="pl-en">rep</span>(i, <span class="pl-c1">1</span>, dfsn)
 {
-    if (b[i] == 'C')
+    <span class="pl-k">if</span> (b[i] == <span class="pl-s"><span class="pl-pds">'</span>C<span class="pl-pds">'</span></span>)
     {
-        int s = 0, p = 0;
-        for (<span class="pl-smi">auto</span> j : ee[i])
+        <span class="pl-k">int</span> s = <span class="pl-c1">0</span>, p = <span class="pl-c1">0</span>;
+        <span class="pl-k">for</span> (<span class="pl-k">auto</span> j : ee[i])
         {
-            if (b[j] == 'S') s++;
-            if (b[j] == 'P') p++;
+            <span class="pl-k">if</span> (b[j] == <span class="pl-s"><span class="pl-pds">'</span>S<span class="pl-pds">'</span></span>) s++;
+            <span class="pl-k">if</span> (b[j] == <span class="pl-s"><span class="pl-pds">'</span>P<span class="pl-pds">'</span></span>) p++;
         }
-        if (s &gt; p) ans += p;
-        else ans += s;
+        <span class="pl-k">if</span> (s &gt; p) ans += p;
+        <span class="pl-k">else</span> ans += s;
     }
 }
 cout &lt;&lt; ans &lt;&lt; endl;</pre></div>
@@ -181,54 +181,54 @@ cout &lt;&lt; ans &lt;&lt; endl;</pre></div>
 <p>$dp_{u,2} = \sum min{dp_{v,1}+1, dp_{v,2}, dp_{v,3}}$</p>
 <p>$dp_{u,1} = \sum min{dp_{v,1}+1, dp_{v,2}+1, dp_{v,3}}$</p>
 <p>由于不同颜色的水不能混合，有颜色的水不能为空，我们将 $dp_u$ 的一些值初始设成无穷大，具体见代码。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#include &lt;bits/stdc++.h&gt;
-#define MAXN 100010
-#define inf 0x3f3f3f3f
-#define rep(i, a, b) for(int i = (a); i &lt;= (b); i++)
-#define per(i, a, b) for(int i = (a); i &gt;= (b); i--)
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
-typedef long long ll;
-vector &lt;int&gt; e[MAXN];
-ll dp[MAXN][5], n;
-char a[MAXN];
-// p 1, s, 2, c 3;
-void dfs(int x)
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">define</span> <span class="pl-en">MAXN</span> <span class="pl-c1">100010</span>
+#<span class="pl-k">define</span> <span class="pl-en">inf</span> <span class="pl-c1">0x3f3f3f3f</span>
+#<span class="pl-k">define</span> <span class="pl-en">rep</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &lt;= (b); i++)
+#<span class="pl-k">define</span> <span class="pl-en">per</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &gt;= (b); i--)
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<span class="pl-k">typedef</span> <span class="pl-k">long</span> <span class="pl-k">long</span> ll;
+vector &lt;<span class="pl-k">int</span>&gt; e[MAXN];
+ll dp[MAXN][<span class="pl-c1">5</span>], n;
+<span class="pl-k">char</span> a[MAXN];
+<span class="pl-c"><span class="pl-c">//</span> p 1, s, 2, c 3;</span>
+<span class="pl-k">void</span> <span class="pl-en">dfs</span>(<span class="pl-k">int</span> x)
 {
-    rep(i, 1, 3) dp[x][i] = 0;
-    // 不同颜色的水不能混合，有颜色的水不能为空
-    if (a[x] == 'P')
-        dp[x][2] = inf, dp[x][3] = inf;
-    else if (a[x] == 'S')
-        dp[x][1] = inf, dp[x][3] = inf;
+    <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, <span class="pl-c1">3</span>) dp[x][i] = <span class="pl-c1">0</span>;
+    <span class="pl-c"><span class="pl-c">//</span> 不同颜色的水不能混合，有颜色的水不能为空</span>
+    <span class="pl-k">if</span> (a[x] == <span class="pl-s"><span class="pl-pds">'</span>P<span class="pl-pds">'</span></span>)
+        dp[x][<span class="pl-c1">2</span>] = inf, dp[x][<span class="pl-c1">3</span>] = inf;
+    <span class="pl-k">else</span> <span class="pl-k">if</span> (a[x] == <span class="pl-s"><span class="pl-pds">'</span>S<span class="pl-pds">'</span></span>)
+        dp[x][<span class="pl-c1">1</span>] = inf, dp[x][<span class="pl-c1">3</span>] = inf;
         
-    for (<span class="pl-smi">auto</span> y : e[x])
+    <span class="pl-k">for</span> (<span class="pl-k">auto</span> y : e[x])
     {
-        // 题目数据保证了小编号是大编号的根，因此建的是有向图
-        dfs(y);
-        dp[x][1] += min({dp[y][1], dp[y][2] + 1, dp[y][3]});
-        dp[x][2] += min({dp[y][1] + 1, dp[y][2], dp[y][3]});
-        dp[x][3] += min({dp[y][1] + 1, dp[y][2] + 1, dp[y][3]});
+        <span class="pl-c"><span class="pl-c">//</span> 题目数据保证了小编号是大编号的根，因此建的是有向图</span>
+        <span class="pl-c1">dfs</span>(y);
+        dp[x][<span class="pl-c1">1</span>] += <span class="pl-c1">min</span>({dp[y][<span class="pl-c1">1</span>], dp[y][<span class="pl-c1">2</span>] + <span class="pl-c1">1</span>, dp[y][<span class="pl-c1">3</span>]});
+        dp[x][<span class="pl-c1">2</span>] += <span class="pl-c1">min</span>({dp[y][<span class="pl-c1">1</span>] + <span class="pl-c1">1</span>, dp[y][<span class="pl-c1">2</span>], dp[y][<span class="pl-c1">3</span>]});
+        dp[x][<span class="pl-c1">3</span>] += <span class="pl-c1">min</span>({dp[y][<span class="pl-c1">1</span>] + <span class="pl-c1">1</span>, dp[y][<span class="pl-c1">2</span>] + <span class="pl-c1">1</span>, dp[y][<span class="pl-c1">3</span>]});
     }
 }
-int main()
+<span class="pl-k">int</span> <span class="pl-en">main</span>()
 {
-    ios::<span class="pl-en">sync_with_stdio</span>(false), cin.tie(<span class="pl-c1">nullptr</span>);
-    int T; cin &gt;&gt; T;
-    for (int ttt = 0; ttt &lt; T; ttt++)
+    <span class="pl-c1">ios::sync_with_stdio</span>(<span class="pl-c1">false</span>), cin.<span class="pl-c1">tie</span>(<span class="pl-c1">nullptr</span>);
+    <span class="pl-k">int</span> T; cin &gt;&gt; T;
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> ttt = <span class="pl-c1">0</span>; ttt &lt; T; ttt++)
     {
         cin &gt;&gt; n;
-        rep(i, 1, n) e[i].clear();
-        int tmp;
-        rep(i, 2, n)
+        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n) e[i].<span class="pl-c1">clear</span>();
+        <span class="pl-k">int</span> tmp;
+        <span class="pl-c1">rep</span>(i, <span class="pl-c1">2</span>, n)
         {
             cin &gt;&gt; tmp;
-            e[tmp].push_back(i);
+            e[tmp].<span class="pl-c1">push_back</span>(i);
         }
-        rep(i, 1, n) cin &gt;&gt; a[i];
-        dfs(1);
-        cout &lt;&lt; min({dp[1][1], dp[1][2], dp[1][3]}) &lt;&lt; endl;;
+        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n) cin &gt;&gt; a[i];
+        <span class="pl-c1">dfs</span>(<span class="pl-c1">1</span>);
+        cout &lt;&lt; <span class="pl-c1">min</span>({dp[<span class="pl-c1">1</span>][<span class="pl-c1">1</span>], dp[<span class="pl-c1">1</span>][<span class="pl-c1">2</span>], dp[<span class="pl-c1">1</span>][<span class="pl-c1">3</span>]}) &lt;&lt; endl;;
     }
-    return 0;
+    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
 }</pre></div>
 <p><a href="https://codeforces.com/contest/1926/submission/247462688" rel="nofollow">AC记录</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>

@@ -103,145 +103,145 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>例如：$L$ 操作就相当于求解方程 $a[l] \times x \equiv \pmod k$，然后 <code class="notranslate">l++</code> 。</p>
 <p>那么问题来了，<strong>如何求解线性同余方程呢？</strong></p>
 <p>参考 <a href="https://oi-wiki.org/math/number-theory/linear-equation/" rel="nofollow">oi-wiki</a> 中的介绍，可以用扩展欧几里得算法来进行求解。于是我写出了如下代码：</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">int ex_gcd(int a, int b, int &amp;x, int &amp;y)
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">int</span> <span class="pl-en">ex_gcd</span>(<span class="pl-k">int</span> a, <span class="pl-k">int</span> b, <span class="pl-k">int</span> &amp;x, <span class="pl-k">int</span> &amp;y)
 {
-    if (b == 0)
+    <span class="pl-k">if</span> (b == <span class="pl-c1">0</span>)
     {
-        x = 1;
-        y = 0;
-        return a;
+        x = <span class="pl-c1">1</span>;
+        y = <span class="pl-c1">0</span>;
+        <span class="pl-k">return</span> a;
     }
-    int d = ex_gcd(b, a % b, x, y);
-    int tmp = y;
+    <span class="pl-k">int</span> d = <span class="pl-c1">ex_gcd</span>(b, a % b, x, y);
+    <span class="pl-k">int</span> tmp = y;
     y = x - (a / b) * y;
     x = tmp;
-    return d;
+    <span class="pl-k">return</span> d;
 }
-int equ(int a, int b, int n)
+<span class="pl-k">int</span> <span class="pl-en">equ</span>(<span class="pl-k">int</span> a, <span class="pl-k">int</span> b, <span class="pl-k">int</span> n)
 {
-    // ax+ny = b;
-    int x, y;
-    int d = ex_gcd(a, n, x, y);
-    int k = b / d;
+    <span class="pl-c"><span class="pl-c">//</span> ax+ny = b;</span>
+    <span class="pl-k">int</span> x, y;
+    <span class="pl-k">int</span> d = <span class="pl-c1">ex_gcd</span>(a, n, x, y);
+    <span class="pl-k">int</span> k = b / d;
     x *= k;
     y *= k;
-    return (x + n) % n;
+    <span class="pl-k">return</span> (x + n) % n;
 }</pre></div>
 <p>经过测试，equ 函数确实可以求出方程 $ax \equiv b \pmod n$ 的一个小于 $n$ 的非负整数解。于是，有如下代码：</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">int main()
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">int</span> <span class="pl-en">main</span>()
 {
-    ios::<span class="pl-en">sync_with_stdio</span>(false), cin.tie(<span class="pl-c1">nullptr</span>);
-    int n, m;
-    int T; cin &gt;&gt; T;
-    for (int ttt = 0; ttt &lt; T; ttt++)
+    <span class="pl-c1">ios::sync_with_stdio</span>(<span class="pl-c1">false</span>), cin.<span class="pl-c1">tie</span>(<span class="pl-c1">nullptr</span>);
+    <span class="pl-k">int</span> n, m;
+    <span class="pl-k">int</span> T; cin &gt;&gt; T;
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> ttt = <span class="pl-c1">0</span>; ttt &lt; T; ttt++)
     {
         cin &gt;&gt; n &gt;&gt; m;
-        int now = 1;
-        rep(i, 1, n)
+        <span class="pl-k">int</span> now = <span class="pl-c1">1</span>;
+        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n)
         {
             cin &gt;&gt; a[i];
             now = now * a[i] % m;
         }
-        char op;
-        int l = 1, r = n;
-        rep(i, 1, n)
+        <span class="pl-k">char</span> op;
+        <span class="pl-k">int</span> l = <span class="pl-c1">1</span>, r = n;
+        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n)
         {
             cin &gt;&gt; op;
-            if (op == 'L')
+            <span class="pl-k">if</span> (op == <span class="pl-s"><span class="pl-pds">'</span>L<span class="pl-pds">'</span></span>)
             {
-                // a[l] * x = now (mod m)
-                now = equ(a[l], now, m);
-                cout &lt;&lt; now &lt;&lt; ' ';
+                <span class="pl-c"><span class="pl-c">//</span> a[l] * x = now (mod m)</span>
+                now = <span class="pl-c1">equ</span>(a[l], now, m);
+                cout &lt;&lt; now &lt;&lt; <span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>;
                 l++;
             }
-            else
+            <span class="pl-k">else</span>
             {
-                now = equ(a[r], now, m);
-                cout &lt;&lt; now &lt;&lt; ' ';
+                now = <span class="pl-c1">equ</span>(a[r], now, m);
+                cout &lt;&lt; now &lt;&lt; <span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>;
                 r--;
             }
         }
         cout &lt;&lt; endl;
     }
-    return 0;
+    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
 }</pre></div>
 <p>运行一下，惊奇地发现一个样例都过不去。原因在于：<strong>线性同余方程是有多解的</strong>。我天真地以为根据题目要求可以限制出唯一满足条件的整数解，但事实并非如此。$3x \equiv 0 \pmod 6$ 的解可以是 $0$ 和 $2$ ，此时就不能确定了。</p>
 <h2>思路二（正解）</h2>
 <p>思路一求解同余方程，本质是想要在取模意义下做除法，这正是导致产生多解的原因。注意到除法的逆运算——乘法，在取模意义下的解是唯一的，于是便想到了倒着做，即从数组只剩一个元素的情况倒推回去，每次都乘以左边或右边的元素，这样就不会产生多解了。另外，可以用栈存储答案，这样输出时的顺序就变回去了。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#include &lt;bits/stdc++.h&gt;
-#define MAXN 200010
-#define rep(i, a, b) for(int i = (a); i &lt;= (b); i++)
-#define per(i, a, b) for(int i = (a); i &gt;= (b); i--)
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
-typedef long long ll;
-int ex_gcd(int a, int b, int &amp;x, int &amp;y)
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">define</span> <span class="pl-en">MAXN</span> <span class="pl-c1">200010</span>
+#<span class="pl-k">define</span> <span class="pl-en">rep</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &lt;= (b); i++)
+#<span class="pl-k">define</span> <span class="pl-en">per</span>(<span class="pl-v">i, a, b</span>) <span class="pl-k">for</span>(<span class="pl-k">int</span> i = (a); i &gt;= (b); i--)
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<span class="pl-k">typedef</span> <span class="pl-k">long</span> <span class="pl-k">long</span> ll;
+<span class="pl-k">int</span> <span class="pl-en">ex_gcd</span>(<span class="pl-k">int</span> a, <span class="pl-k">int</span> b, <span class="pl-k">int</span> &amp;x, <span class="pl-k">int</span> &amp;y)
 {
-    if (b == 0)
+    <span class="pl-k">if</span> (b == <span class="pl-c1">0</span>)
     {
-        x = 1;
-        y = 0;
-        return a;
+        x = <span class="pl-c1">1</span>;
+        y = <span class="pl-c1">0</span>;
+        <span class="pl-k">return</span> a;
     }
-    int d = ex_gcd(b, a % b, x, y);
-    int tmp = y;
+    <span class="pl-k">int</span> d = <span class="pl-c1">ex_gcd</span>(b, a % b, x, y);
+    <span class="pl-k">int</span> tmp = y;
     y = x - (a / b) * y;
     x = tmp;
-    return d;
+    <span class="pl-k">return</span> d;
 }
-int equ(int a, int b, int n)
+<span class="pl-k">int</span> <span class="pl-en">equ</span>(<span class="pl-k">int</span> a, <span class="pl-k">int</span> b, <span class="pl-k">int</span> n)
 {
-    // ax+ny = b;
-    int x, y;
-    int d = ex_gcd(a, n, x, y);
-    int k = b / d;
+    <span class="pl-c"><span class="pl-c">//</span> ax+ny = b;</span>
+    <span class="pl-k">int</span> x, y;
+    <span class="pl-k">int</span> d = <span class="pl-c1">ex_gcd</span>(a, n, x, y);
+    <span class="pl-k">int</span> k = b / d;
     x *= k;
     y *= k;
-    return (x + n) % n;
+    <span class="pl-k">return</span> (x + n) % n;
 }
-int a[MAXN];
-int main()
+<span class="pl-k">int</span> a[MAXN];
+<span class="pl-k">int</span> <span class="pl-en">main</span>()
 {
-    ios::<span class="pl-en">sync_with_stdio</span>(false), cin.tie(<span class="pl-c1">nullptr</span>);
-    int n, m;
-    int T; cin &gt;&gt; T;
-    for (int ttt = 0; ttt &lt; T; ttt++)
+    <span class="pl-c1">ios::sync_with_stdio</span>(<span class="pl-c1">false</span>), cin.<span class="pl-c1">tie</span>(<span class="pl-c1">nullptr</span>);
+    <span class="pl-k">int</span> n, m;
+    <span class="pl-k">int</span> T; cin &gt;&gt; T;
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> ttt = <span class="pl-c1">0</span>; ttt &lt; T; ttt++)
     {
         cin &gt;&gt; n &gt;&gt; m;
-        stack &lt;int&gt; ans;
-        rep(i, 1, n) cin &gt;&gt; a[i];
+        stack &lt;<span class="pl-k">int</span>&gt; ans;
+        <span class="pl-c1">rep</span>(i, <span class="pl-c1">1</span>, n) cin &gt;&gt; a[i];
         string op;
-        int l = 1, r = n;
+        <span class="pl-k">int</span> l = <span class="pl-c1">1</span>, r = n;
         cin &gt;&gt; op;
-        for (<span class="pl-smi">auto</span> i : op)
+        <span class="pl-k">for</span> (<span class="pl-k">auto</span> i : op)
         {
-            if (i == 'L') l++;
-            else r--;
+            <span class="pl-k">if</span> (i == <span class="pl-s"><span class="pl-pds">'</span>L<span class="pl-pds">'</span></span>) l++;
+            <span class="pl-k">else</span> r--;
         }
-        int now = 1;
-        per(i, n - 1, 0)
+        <span class="pl-k">int</span> now = <span class="pl-c1">1</span>;
+        <span class="pl-c1">per</span>(i, n - <span class="pl-c1">1</span>, <span class="pl-c1">0</span>)
         {
-            if (op[i] == 'L')
+            <span class="pl-k">if</span> (op[i] == <span class="pl-s"><span class="pl-pds">'</span>L<span class="pl-pds">'</span></span>)
             {
                 l--;
                 now = now * a[l] % m;
-                ans.push(now);
+                ans.<span class="pl-c1">push</span>(now);
             }
-            else
+            <span class="pl-k">else</span>
             {
                 r++;
                 now = now * a[r] % m;
-                ans.push(now);
+                ans.<span class="pl-c1">push</span>(now);
             }
         }
-        cout &lt;&lt; ans.top(); ans.pop();
-        while (!ans.empty())
+        cout &lt;&lt; ans.<span class="pl-c1">top</span>(); ans.<span class="pl-c1">pop</span>();
+        <span class="pl-k">while</span> (!ans.<span class="pl-c1">empty</span>())
         {
-            cout &lt;&lt; ' ' &lt;&lt; ans.top();
-            ans.pop();
+            cout &lt;&lt; <span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span> &lt;&lt; ans.<span class="pl-c1">top</span>();
+            ans.<span class="pl-c1">pop</span>();
         }
         cout &lt;&lt; endl;
     }
-    return 0;
+    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
 
