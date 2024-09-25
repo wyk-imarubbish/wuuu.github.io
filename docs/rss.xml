@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Wyk的博客</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link><description>分享一些解题思路和技术</description><copyright>Wyk的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link></image><lastBuildDate>Sun, 04 Aug 2024 21:39:34 +0000</lastBuildDate><managingEditor>Wyk的博客</managingEditor><ttl>60</ttl><webMaster>Wyk的博客</webMaster><item><title>树状数组模板</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/shu-zhuang-shu-zu-mo-ban.html</link><description>```cpp&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Wyk的博客</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link><description>分享一些解题思路和技术</description><copyright>Wyk的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://wyk-imarubbish.github.io/wuuu.github.io</link></image><lastBuildDate>Wed, 25 Sep 2024 15:47:56 +0000</lastBuildDate><managingEditor>Wyk的博客</managingEditor><ttl>60</ttl><webMaster>Wyk的博客</webMaster><item><title>GCD_Calculator</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/GCD_Calculator.html</link><description>---&#13;
+title: GCD Calculator&#13;
+date: 2023-09-25&#13;
+---&#13;
+&#13;
+# GCD Calculator&#13;
+&#13;
+Here's a useful tool to calculate the Greatest Common Divisor (GCD) of two numbers:&#13;
+&#13;
+&lt;iframe src='gcd_calculator.html' width='100%' height='600px' frameborder='0'&gt;&lt;/iframe&gt;。</description><guid isPermaLink="true">https://wyk-imarubbish.github.io/wuuu.github.io/post/GCD_Calculator.html</guid><pubDate>Wed, 25 Sep 2024 15:47:29 +0000</pubDate></item><item><title>树状数组模板</title><link>https://wyk-imarubbish.github.io/wuuu.github.io/post/shu-zhuang-shu-zu-mo-ban.html</link><description>```cpp&#13;
 /**********************************************************&#13;
  * @name： 树状数组&#13;
  * @author: wyk&#13;
